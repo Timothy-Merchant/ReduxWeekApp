@@ -8,15 +8,17 @@ import { createStore } from "redux";
 const initial = {
   player1: 0,
   player2: 0,
+  server: "player1"
 };
 
-const increaseScore = (state, action) => {
-  return { ...state, [action.player]: state[action.player] + 1 }
-}
+const increaseScore = (state, action) => ({ ...state, [action.player]: state[action.player] + 1 });
+const changeServer = (state) => ({
+  ...state, server: (state.player1 + state.player2) % 5 === 0 ? state.server === "player1" ? "player2" : "player1" : state.server
+});
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "INCREMENT": return increaseScore(state, action);
+    case "INCREMENT": return changeServer(increaseScore(state, action));
     case "RESET": return initial;
     default: return state;
   }
@@ -38,6 +40,7 @@ store.subscribe(() => {
           handleP2Increment={() => store.dispatch({ type: "INCREMENT", player: "player2" })}
           p1Score={state.player1}
           p2Score={state.player2}
+          server={state.server}
           handleReset={() => store.dispatch({ type: "RESET" })}
         />
       </div>
@@ -48,7 +51,7 @@ store.subscribe(() => {
 
 });
 
-store.dispatch({ type: "INCREMENT" });
+store.dispatch({ type: "RESET" });
 
 
 // If you want to start measuring performance in your app, pass a function
