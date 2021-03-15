@@ -8,17 +8,26 @@ import { createStore } from "redux";
 const initial = {
   player1: 0,
   player2: 0,
-  server: "player1"
+  server: 1,
+  winner: 0
 };
 
 const increaseScore = (state, action) => ({ ...state, [action.player]: state[action.player] + 1 });
+
 const changeServer = (state) => ({
-  ...state, server: (state.player1 + state.player2) % 5 === 0 ? state.server === "player1" ? "player2" : "player1" : state.server
+  ...state, server: (state.player1 + state.player2) % 5 === 0 ?
+    state.server === 1 ? 2 : 1 : state.server
+});
+
+const determineWinner = (state) => ({
+  ...state, winner:
+    state.player1 >= 21 ? 1 :
+      state.player2 >= 21 ? 2 : 0
 });
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "INCREMENT": return changeServer(increaseScore(state, action));
+    case "INCREMENT": return determineWinner(changeServer(increaseScore(state, action)));
     case "RESET": return initial;
     default: return state;
   }
@@ -41,6 +50,7 @@ store.subscribe(() => {
           p1Score={state.player1}
           p2Score={state.player2}
           server={state.server}
+          winner={state.winner}
           handleReset={() => store.dispatch({ type: "RESET" })}
         />
       </div>

@@ -5,6 +5,7 @@ const App = ({
   p2Score,
   handleReset,
   server,
+  winner,
 }) => (
   <>
     <link
@@ -22,7 +23,7 @@ const App = ({
     {/* scores */}
     <div className="row mb-4">
       <div className="col-md-6 mt-4">
-        <div className={server === "player1" ? "card text-center bg-dark text-white" : "card text-center"}>
+        <div className={server === 1 ? "card text-center bg-dark text-white" : "card text-center"}>
           <h5 className="card-header">Player 1</h5>
           <div className="card-body">
             <p className="card-text display-1">{p1Score}</p>
@@ -34,7 +35,7 @@ const App = ({
       </div>
 
       <div className="col-md-6 mt-4">
-        <div className={server === "player2" ? "card text-center bg-dark text-white" : "card text-center"}>
+        <div className={server === 2 ? "card text-center bg-dark text-white" : "card text-center"}>
           <h5 className="card-header">Player 2</h5>
           <div className="card-body">
             <p className="card-text display-1">{p2Score}</p>
@@ -47,7 +48,7 @@ const App = ({
     </div>
 
     { /* winner message */}
-    <h2 className="alert alert-success">Player {/* winning player here */} wins!</h2>
+    <h2 className="alert alert-success">{winner !== 0 ? `Player ${winner} wins!` : `Get to 21 points to win!`}</h2>
 
     <hr />
 
