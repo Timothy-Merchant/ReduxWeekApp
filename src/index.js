@@ -21,8 +21,11 @@ const changeServer = (state) => ({
 
 const determineWinner = (state) => ({
   ...state, winner:
-    state.player1 >= 21 ? 1 :
-      state.player2 >= 21 ? 2 : 0
+    Math.abs(state.player1 - state.player2) > 2 ?
+      state.player1 >= 21 ? 1 :
+        state.player2 >= 21 ? 2
+          : 0
+      : 0
 });
 
 const reducer = (state, action) => {
@@ -47,8 +50,10 @@ store.subscribe(() => {
         <App
           handleP1Increment={() => store.dispatch({ type: "INCREMENT", player: "player1" })}
           handleP2Increment={() => store.dispatch({ type: "INCREMENT", player: "player2" })}
+          p1ID={1}
+          p2ID={2}
           p1Score={state.player1}
-          p2Score={state.player2}          
+          p2Score={state.player2}
           server={state.server}
           winner={state.winner}
           handleReset={() => store.dispatch({ type: "RESET" })}

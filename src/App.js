@@ -1,7 +1,8 @@
 import ScoreBoard from "./components/ScoreBoard";
 
 const App = ({
-  playerID,
+  p1ID,
+  p2ID,
   handleP1Increment,
   handleP2Increment,
   p1Score,
@@ -25,8 +26,8 @@ const App = ({
 
     {/* scores */}
     <div className="row mb-4">
-      <ScoreBoard playerID={1} playerScore={p1Score} handleIncrement={handleP1Increment} server={server} winner={winner} />
-      <ScoreBoard playerID={2} playerScore={p2Score} handleIncrement={handleP2Increment} server={server} winner={winner} />
+      <ScoreBoard playerID={p1ID} playerScore={p1Score} handleIncrement={handleP1Increment} server={server} winner={winner} />
+      <ScoreBoard playerID={p2ID} playerScore={p2Score} handleIncrement={handleP2Increment} server={server} winner={winner} />
     </div>
 
     { /* winner message */}
