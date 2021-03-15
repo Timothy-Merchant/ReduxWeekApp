@@ -13,30 +13,49 @@ const initial = {
   games: []
 };
 
-const increaseScore = (state, action) => ({ ...state, [action.player]: state[action.player] + 1 });
+const increaseScore = (state, { player }) => ({ ...state, [player]: state[player] + 1 });
 
-const changeServer = (state) => ({
-  ...state, server:
-    (state.player1 && state.player2 > 20) ?
-      (state.player1 + state.player2) % 2 === 0 ?
-        state.server === 1 ? 2 : 1 : state.server :
-      (state.player1 + state.player2) % 5 === 0 ?
-        state.server === 1 ? 2 : 1 : state.server
-});
+const changeServer = (state) => {
 
-const determineWinner = (state) => ({
-  ...state, winner:
-    Math.abs(state.player1 - state.player2) >= 2 ?
-      state.player1 >= 21 ? 1 :
-        state.player2 >= 21 ? 2
-          : 0
-      : 0
-});
+  const { player1, player2, server } = state;
+  const total = player1 + player2;
+
+  return ({
+    ...state, server:
+      (player1 > 20 && player2 > 20) ?
+        total % 2 === 0 ?
+          server === 1 ? 2 : 1 : server :
+        total % 5 === 0 ?
+          server === 1 ? 2 : 1 : server
+  })
+}
+
+const determineWinner = (state) => {
+
+  const { player1, player2 } = state;
+
+  return ({
+    ...state, winner:
+      Math.abs(player1 - player2) >= 2 ?
+        player1 >= 21 ? 1 :
+          player2 >= 21 ? 2
+            : 0
+        : 0
+  })
+};
 
 const storeResult = (state) => {
+
+  const game = {
+    player1: state.player1,
+    player2: state.player2,
+    winner: state.winner
+  };
+
   if (state.winner !== 0) {
-    state.games.push({ ...state });
+    return { ...state, games: [...state.games, { ...game }] }
   }
+
   return { ...state }
 };
 
