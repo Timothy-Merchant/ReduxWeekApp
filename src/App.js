@@ -25,8 +25,8 @@ const App = ({
 
     {/* scores */}
     <div className="row mb-4">
-      <ScoreBoard playerID={1} playerScore={p1Score} handleIncrement={handleP1Increment} server={server} />
-      <ScoreBoard playerID={2} playerScore={p2Score} handleIncrement={handleP2Increment} server={server} />
+      <ScoreBoard playerID={1} playerScore={p1Score} handleIncrement={handleP1Increment} server={server} winner={winner} />
+      <ScoreBoard playerID={2} playerScore={p2Score} handleIncrement={handleP2Increment} server={server} winner={winner} />
     </div>
 
     { /* winner message */}
