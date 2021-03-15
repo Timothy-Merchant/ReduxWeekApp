@@ -29,22 +29,27 @@ store.subscribe(() => {
   let state = store.getState();
   console.log(state.player1);
   console.log(state.player2);
+
+  ReactDOM.render(
+    <React.StrictMode>
+      <div id="root" className="container">
+        <App
+          handleP1Increment={() => store.dispatch({ type: "INCREMENT", player: "player1" })}
+          handleP2Increment={() => store.dispatch({ type: "INCREMENT", player: "player2" })}
+          p1Score={state.player1}
+          p2Score={state.player2}
+          handleReset={() => store.dispatch({ type: "RESET" })}
+        />
+      </div>
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+
+
 });
 
 store.dispatch({ type: "INCREMENT" });
 
-ReactDOM.render(
-  <React.StrictMode>
-    <div id="root" className="container">
-      <App
-        handleP1Increment={() => store.dispatch({ type: "INCREMENT", player: "player1" })}
-        handleP2Increment={() => store.dispatch({ type: "INCREMENT", player: "player2" })}
-        handleReset={() => store.dispatch({ type: "RESET" })}
-      />
-    </div>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

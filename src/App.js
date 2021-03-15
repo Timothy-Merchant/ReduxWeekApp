@@ -1,4 +1,10 @@
-const App = ({ handleP1Increment, handleP2Increment, handleReset }) => (
+const App = ({
+  handleP1Increment,
+  handleP2Increment,
+  p1Score,
+  p2Score,
+  handleReset,
+}) => (
   <>
     <link
       rel="stylesheet"
@@ -18,7 +24,7 @@ const App = ({ handleP1Increment, handleP2Increment, handleReset }) => (
         <div className="card text-center bg-dark text-white">
           <h5 className="card-header">Player 1</h5>
           <div className="card-body">
-            <p className="card-text display-1">{/* player1 score */}</p>
+            <p className="card-text display-1">{p1Score}</p>
           </div>
           <div className="card-footer">
             <button onClick={handleP1Increment} className="form-control btn btn-success">+</button>
@@ -30,7 +36,7 @@ const App = ({ handleP1Increment, handleP2Increment, handleReset }) => (
         <div className="card text-center">
           <h5 className="card-header">Player 2</h5>
           <div className="card-body">
-            <p className="card-text display-1">{/* player2 score */}</p>
+            <p className="card-text display-1">{p2Score}</p>
           </div>
           <div className="card-footer">
             <button onClick={handleP2Increment} className="form-control btn btn-success">+</button>
