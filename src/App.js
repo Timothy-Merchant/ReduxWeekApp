@@ -1,4 +1,4 @@
-const App = () => (
+const App = ({ handleIncrement, handleDecrement, handleReset }) => (
   <>
     <link
       rel="stylesheet"
@@ -6,7 +6,7 @@ const App = () => (
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    
+
     {/* header */}
     <header className="jumbotron mt-4 mb-0">
       <h1>PongPing</h1>
