@@ -9,7 +9,8 @@ const initial = {
   player1: 0,
   player2: 0,
   server: 1,
-  winner: 0
+  winner: 0,
+  games: []
 };
 
 const increaseScore = (state, action) => ({ ...state, [action.player]: state[action.player] + 1 });
@@ -32,9 +33,16 @@ const determineWinner = (state) => ({
       : 0
 });
 
+const storeResult = (state) => {
+  if (state.winner !== 0) {
+    state.games.push({ ...state });
+  }
+  return { ...state }
+};
+
 const reducer = (state, action) => {
   switch (action.type) {
-    case "INCREMENT": return determineWinner(changeServer(increaseScore(state, action)));
+    case "INCREMENT": return storeResult(determineWinner(changeServer(increaseScore(state, action))));
     case "RESET": return initial;
     default: return state;
   }
@@ -61,6 +69,7 @@ store.subscribe(() => {
           server={state.server}
           winner={state.winner}
           handleReset={() => store.dispatch({ type: "RESET" })}
+          games={state.games}
         />
       </div>
     </React.StrictMode>,

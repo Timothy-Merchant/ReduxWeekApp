@@ -1,3 +1,4 @@
+import GamesTable from "./components/GamesTable";
 import ScoreBoard from "./components/ScoreBoard";
 
 const App = ({
@@ -10,6 +11,7 @@ const App = ({
   handleReset,
   server,
   winner,
+  games,
 }) => (
   <>
     <link
@@ -33,10 +35,14 @@ const App = ({
     { /* winner message */}
     <h2 className="alert alert-success">{winner !== 0 ? `Player ${winner} wins!` : `Get to 21 points to win!`}</h2>
 
-    <hr />
-
     { /* reset button */}
     <button onClick={handleReset} className="btn btn-danger">Reset</button>
+
+    <hr />
+    {/* Games table */}
+    <GamesTable games={games}/>
+    <hr />
+
   </>
 );
 
