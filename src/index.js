@@ -4,9 +4,16 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+const initial = {
+  player1: 0,
+  player2: 0,
+}
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <div id="root" className="container">
+      <App />
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );
