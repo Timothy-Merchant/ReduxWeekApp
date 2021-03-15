@@ -15,13 +15,17 @@ const initial = {
 const increaseScore = (state, action) => ({ ...state, [action.player]: state[action.player] + 1 });
 
 const changeServer = (state) => ({
-  ...state, server: (state.player1 + state.player2) % 5 === 0 ?
-    state.server === 1 ? 2 : 1 : state.server
+  ...state, server:
+    (state.player1 && state.player2 > 20) ?
+      (state.player1 + state.player2) % 2 === 0 ?
+        state.server === 1 ? 2 : 1 : state.server :
+      (state.player1 + state.player2) % 5 === 0 ?
+        state.server === 1 ? 2 : 1 : state.server
 });
 
 const determineWinner = (state) => ({
   ...state, winner:
-    Math.abs(state.player1 - state.player2) > 2 ?
+    Math.abs(state.player1 - state.player2) >= 2 ?
       state.player1 >= 21 ? 1 :
         state.player2 >= 21 ? 2
           : 0
