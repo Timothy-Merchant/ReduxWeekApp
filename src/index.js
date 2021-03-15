@@ -48,7 +48,7 @@ store.subscribe(() => {
           handleP1Increment={() => store.dispatch({ type: "INCREMENT", player: "player1" })}
           handleP2Increment={() => store.dispatch({ type: "INCREMENT", player: "player2" })}
           p1Score={state.player1}
-          p2Score={state.player2}
+          p2Score={state.player2}          
           server={state.server}
           winner={state.winner}
           handleReset={() => store.dispatch({ type: "RESET" })}

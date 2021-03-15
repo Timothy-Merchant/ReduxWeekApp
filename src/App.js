@@ -1,4 +1,7 @@
+import ScoreBoard from "./components/ScoreBoard";
+
 const App = ({
+  playerID,
   handleP1Increment,
   handleP2Increment,
   p1Score,
@@ -22,29 +25,8 @@ const App = ({
 
     {/* scores */}
     <div className="row mb-4">
-      <div className="col-md-6 mt-4">
-        <div className={server === 1 ? "card text-center bg-dark text-white" : "card text-center"}>
-          <h5 className="card-header">Player 1</h5>
-          <div className="card-body">
-            <p className="card-text display-1">{p1Score}</p>
-          </div>
-          <div className="card-footer">
-            <button onClick={handleP1Increment} className="form-control btn btn-success">+</button>
-          </div>
-        </div>
-      </div>
-
-      <div className="col-md-6 mt-4">
-        <div className={server === 2 ? "card text-center bg-dark text-white" : "card text-center"}>
-          <h5 className="card-header">Player 2</h5>
-          <div className="card-body">
-            <p className="card-text display-1">{p2Score}</p>
-          </div>
-          <div className="card-footer">
-            <button onClick={handleP2Increment} className="form-control btn btn-success">+</button>
-          </div>
-        </div>
-      </div>
+      <ScoreBoard playerID={1} playerScore={p1Score} handleIncrement={handleP1Increment} server={server} />
+      <ScoreBoard playerID={2} playerScore={p2Score} handleIncrement={handleP2Increment} server={server} />
     </div>
 
     { /* winner message */}
