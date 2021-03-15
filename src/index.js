@@ -6,13 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import { createStore } from "redux";
 
 const initial = {
-  count: 1,
+  player1: 0,
+  player2: 0,
 };
+
+const increaseScore = (state, action) => {
+  return { ...state, [action.player]: state[action.player] + 1 }
+}
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "INCREMENT": return { ...state, count: state.count + 1 };
-    case "DECREMENT": return { ...state, count: state.count - 1 };
+    case "INCREMENT": return increaseScore(state, action);
     case "RESET": return initial;
     default: return state;
   }
@@ -23,7 +27,8 @@ const store = createStore(reducer, initial, window.__REDUX_DEVTOOLS_EXTENSION__
 
 store.subscribe(() => {
   let state = store.getState();
-  console.log(state.count);
+  console.log(state.player1);
+  console.log(state.player2);
 });
 
 store.dispatch({ type: "INCREMENT" });
@@ -32,8 +37,8 @@ ReactDOM.render(
   <React.StrictMode>
     <div id="root" className="container">
       <App
-        handleIncrement={() => store.dispatch({ type: "INCREMENT" })}
-        handleDecrement={() => store.dispatch({ type: "DECREMENT" })}
+        handleP1Increment={() => store.dispatch({ type: "INCREMENT", player: "player1" })}
+        handleP2Increment={() => store.dispatch({ type: "INCREMENT", player: "player2" })}
         handleReset={() => store.dispatch({ type: "RESET" })}
       />
     </div>

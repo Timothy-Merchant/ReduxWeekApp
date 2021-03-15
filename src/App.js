@@ -1,10 +1,10 @@
-const App = ({ handleIncrement, handleDecrement, handleReset }) => (
+const App = ({ handleP1Increment, handleP2Increment, handleReset }) => (
   <>
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
+      crossOrigin="anonymous"
     />
 
     {/* header */}
@@ -21,7 +21,7 @@ const App = ({ handleIncrement, handleDecrement, handleReset }) => (
             <p className="card-text display-1">{/* player1 score */}</p>
           </div>
           <div className="card-footer">
-            <button className="form-control btn btn-success">+</button>
+            <button onClick={handleP1Increment} className="form-control btn btn-success">+</button>
           </div>
         </div>
       </div>
@@ -33,7 +33,7 @@ const App = ({ handleIncrement, handleDecrement, handleReset }) => (
             <p className="card-text display-1">{/* player2 score */}</p>
           </div>
           <div className="card-footer">
-            <button className="form-control btn btn-success">+</button>
+            <button onClick={handleP2Increment} className="form-control btn btn-success">+</button>
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@ const App = ({ handleIncrement, handleDecrement, handleReset }) => (
     <hr />
 
     { /* reset button */}
-    <button className="btn btn-danger">Reset</button>
+    <button onClick={handleReset} className="btn btn-danger">Reset</button>
   </>
 );
 
