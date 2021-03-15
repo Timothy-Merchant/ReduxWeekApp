@@ -12,11 +12,14 @@ const initial = {
 const reducer = (state, action) => {
   switch (action.type) {
     case "INCREMENT": return { ...state, count: state.count + 1 };
+    case "DECREMENT": return { ...state, count: state.count - 1 };
+    case "RESET": return initial;
     default: return state;
   }
 };
 
-const store = createStore(reducer, initial);
+const store = createStore(reducer, initial, window.__REDUX_DEVTOOLS_EXTENSION__
+  && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 store.subscribe(() => {
   let state = store.getState();
@@ -28,7 +31,11 @@ store.dispatch({ type: "INCREMENT" });
 ReactDOM.render(
   <React.StrictMode>
     <div id="root" className="container">
-      <App />
+      <App
+        handleIncrement={() => store.dispatch({ type: "INCREMENT" })}
+        handleDecrement={() => store.dispatch({ type: "DECREMENT" })}
+        handleReset={() => store.dispatch({ type: "RESET" })}
+      />
     </div>
   </React.StrictMode>,
   document.getElementById('root')
