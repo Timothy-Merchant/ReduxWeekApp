@@ -3,11 +3,27 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { createStore } from "redux";
 
 const initial = {
-  player1: 0,
-  player2: 0,
-}
+  count: 1,
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "INCREMENT": return { ...state, count: state.count + 1 };
+    default: return state;
+  }
+};
+
+const store = createStore(reducer, initial);
+
+store.subscribe(() => {
+  let state = store.getState();
+  console.log(state.count);
+});
+
+store.dispatch({ type: "INCREMENT" });
 
 ReactDOM.render(
   <React.StrictMode>
