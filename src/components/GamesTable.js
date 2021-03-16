@@ -4,40 +4,22 @@ const GamesTable = ({ games, language, languages }) => {
             <table className="table table-dark">
                 <thead>
                     <tr>
-                        <th scope="col">{
-                            language === "en" ? languages.English.player : languages.Japanese.player
-                        }</th>
-                        <th scope="col">
-                            {language === "en" ? languages.English.score : languages.Japanese.score}
-                        </th>
-                        <th scope="col">
-                            {language === "en" ? languages.English.didWin : languages.Japanese.didWin}
-                        </th>
+                        <th scope="col">{languages.player}</th>
+                        <th scope="col">{languages.score}</th>
+                        <th scope="col">{languages.didWin}</th>
                     </tr>
                 </thead>
                 {games.map((game, index) => (
                     <tbody key={index}>
                         <tr>
-                            <th scope="row">
-                                {language === "en" ? languages.English.player1 : languages.Japanese.player1}
-                            </th>
+                            <th scope="row">{languages.player1}</th>
                             <td>{game.player1}</td>
-                            <td>{game.winner === 1 ?
-                                language === "en" ? languages.English.won : languages.Japanese.won
-                                :
-                                language === "en" ? languages.English.lost : languages.Japanese.lost
-                            }</td>
+                            <td>{game.winner === 1 ? languages.won : languages.lost}</td>
                         </tr>
                         <tr>
-                            <th scope="row">
-                                {language === "en" ? languages.English.player2 : languages.Japanese.player2}
-                            </th>
+                            <th scope="row">{languages.player2}</th>
                             <td>{game.player2}</td>
-                            <td>{game.winner === 2 ?
-                                language === "en" ? languages.English.won : languages.Japanese.won
-                                :
-                                language === "en" ? languages.English.lost : languages.Japanese.lost
-                            }</td>
+                            <td>{game.winner === 2 ? languages.won : languages.lost}</td>
                         </tr>
                     </tbody>
                 ))}

@@ -28,11 +28,7 @@ const App = ({
 
     {/* header */}
     <header className="jumbotron mt-4 mb-0">
-      <h1>{
-        language === "en" ?
-          languages.English.title :
-          languages.Japanese.title
-      }</h1>
+      <h1>{languages.title}</h1>
     </header>
 
     {/* scores */}
@@ -43,24 +39,19 @@ const App = ({
 
     { /* winner message */}
     <h2 className="alert alert-success">{winner !== 0 ?
-      (language === "en" ?
-        `${languages.English.player} ${winner} ${languages.English.winnerMsg}` :
-        `${languages.Japanese.player} ${winner} ${languages.Japanese.winnerMsg}`)
-      :
-      (language === "en" ?
-        `${languages.English.preWinnerMsg}` :
-        `${languages.Japanese.preWinnerMsg}`)}</h2>
+      `${languages.player} ${winner} ${languages.winnerMsg}` :
+      languages.preWinnerMsg}</h2>
 
 
     { /* buttons */}
     <button onClick={handleScoreReset} style={{ marginRight: 20 + "px" }} className="btn btn-danger">
-      {language === "en" ? languages.English.resetScore : languages.Japanese.resetScore}
+      {languages.resetScore}
     </button>
     <button onClick={handleReset} className="btn btn-danger">
-      {language === "en" ? languages.English.resetScoreGames : languages.Japanese.resetScoreGames}
+      {languages.resetScoreGames}
     </button>
     <button onClick={language === "en" ? changeLanguageJP : changeLanguageEN} style={{ marginLeft: 20 + "px" }} className="btn btn-danger">
-      {language === "en" ? languages.Japanese.japanese : languages.English.english}
+      {language === "en" ? "日本語" : "English"}
     </button>
 
     <hr />

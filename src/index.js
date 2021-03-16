@@ -38,7 +38,8 @@ const determineWinner = (state) => {
   const { player1, player2 } = state;
 
   return ({
-    ...state, winner:
+    ...state,
+    winner:
       Math.abs(player1 - player2) >= 2 ?
         player1 >= 21 ? 1 :
           player2 >= 21 ? 2
@@ -51,7 +52,8 @@ const storeResult = (state) => {
 
   if (state.winner !== 0) {
     return {
-      ...state, games: [...state.games, {
+      ...state,
+      games: [...state.games, {
         player1: state.player1,
         player2: state.player2,
         winner: state.winner
@@ -59,11 +61,11 @@ const storeResult = (state) => {
     }
   }
 
-  return { ...state }
+  return state;
 };
 
 const resetGame = (state, { hardReset }) => (
-  hardReset ? { ...initial } : { ...initial, games: [...state.games] }
+  hardReset ? initial : { ...initial, games: [...state.games] }
 )
 
 const reducer = (state, action) => {
@@ -86,7 +88,7 @@ store.subscribe(() => {
       <div id="root" className="container">
         <App
           language={state.language}
-          languages={languages}
+          languages={state.language === "en" ? languages.en : languages.jp }
           changeLanguageEN={() => store.dispatch({ type: "CHANGE_LANGUAGE", language: "en" })}
           changeLanguageJP={() => store.dispatch({ type: "CHANGE_LANGUAGE", language: "jp" })}
           handleP1Increment={() => store.dispatch({ type: "INCREMENT", player: "player1" })}
