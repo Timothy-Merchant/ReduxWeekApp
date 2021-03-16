@@ -18,35 +18,11 @@ const initial = {
 
 const increaseScore = (state, { player }) => ({ ...state, [player]: state[player] + 1 });
 
-const changeServer = (state) => {
+const changeServer = (state) => ({ ...state, server: checkDeuce(state) ? switchServerDeuce(state) : switchServer(state) })
 
-  const { player1, player2, server } = state;
-  const total = player1 + player2;
+const determineWinner = (state) => ({ ...state, winner: checkDeuce(state) ? checkDeuceWinner(state) : checkWinner(state) })
 
-  return ({
-    ...state, server:
-      (player1 > 20 && player2 > 20) ?
-        total % 2 === 0 ?
-          server === 1 ? 2 : 1 : server :
-        total % 5 === 0 ?
-          server === 1 ? 2 : 1 : server
-  })
-}
-
-const determineWinner = (state) => {
-
-  const { player1, player2 } = state;
-
-  return ({
-    ...state,
-    winner:
-      Math.abs(player1 - player2) >= 2 ?
-        player1 >= 21 ? 1 :
-          player2 >= 21 ? 2
-            : 0
-        : 0
-  })
-};
+const resetGame = (state, { hardReset }) => hardReset ? initial : { ...initial, games: [...state.games] };
 
 const storeResult = (state) => {
 
@@ -64,9 +40,14 @@ const storeResult = (state) => {
   return state;
 };
 
-const resetGame = (state, { hardReset }) => (
-  hardReset ? initial : { ...initial, games: [...state.games] }
-)
+const totalScore = ({ player1, player2 }) => player1 + player2;
+const checkAdvantage = ({ player1, player2 }) => Math.abs(player1 - player2) >= 2;
+const checkOver20 = ({ player1, player2 }) => player1 > 20 || player2 > 20;
+const checkDeuce = ({ player1, player2 }) => player1 >= 20 && player2 >= 20;
+const checkWinner = (state) => checkOver20(state) ? (state.player1 > state.player2 ? 1 : 2) : 0;
+const checkDeuceWinner = (state) => checkAdvantage(state) ? (state.player1 > state.player2 ? 1 : 2) : 0;
+const switchServer = (state) => totalScore(state) % 5 === 0 ? (state.server === 1 ? 2 : 1) : state.server;
+const switchServerDeuce = (state) => totalScore(state) % 2 === 0 ? (state.server === 1 ? 2 : 1) : state.server;
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -88,7 +69,7 @@ store.subscribe(() => {
       <div id="root" className="container">
         <App
           language={state.language}
-          languages={state.language === "en" ? languages.en : languages.jp }
+          languages={state.language === "en" ? languages.en : languages.jp}
           changeLanguageEN={() => store.dispatch({ type: "CHANGE_LANGUAGE", language: "en" })}
           changeLanguageJP={() => store.dispatch({ type: "CHANGE_LANGUAGE", language: "jp" })}
           handleP1Increment={() => store.dispatch({ type: "INCREMENT", player: "player1" })}
@@ -107,8 +88,6 @@ store.subscribe(() => {
     </React.StrictMode>,
     document.getElementById('root')
   );
-
-
 });
 
 store.dispatch({ type: "RESET" });
