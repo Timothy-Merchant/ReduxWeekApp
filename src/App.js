@@ -4,7 +4,8 @@ import ScoreBoard from "./components/ScoreBoard";
 const App = ({
   language,
   languages,
-  changeLanguage,
+  changeLanguageJP,
+  changeLanguageEN,
   p1ID,
   p2ID,
   handleP1Increment,
@@ -28,7 +29,9 @@ const App = ({
     {/* header */}
     <header className="jumbotron mt-4 mb-0">
       <h1>{
-        language === "en" ? languages.English.title : languages.Japanese.title
+        language === "en" ?
+          languages.English.title :
+          languages.Japanese.title
       }</h1>
     </header>
 
@@ -40,19 +43,29 @@ const App = ({
 
     { /* winner message */}
     <h2 className="alert alert-success">{winner !== 0 ?
-      (language === "en" ? `Player ${winner} wins!` : `${languages.Japanese.player} ${winner} ${languages.Japanese.winnerMsg}`)
+      (language === "en" ?
+        `${languages.English.player} ${winner} ${languages.English.winnerMsg}` :
+        `${languages.Japanese.player} ${winner} ${languages.Japanese.winnerMsg}`)
       :
-      (language === "en" ? `Let's see who will win!` : `${languages.Japanese.preWinnerMsg}`)}</h2>
+      (language === "en" ?
+        `${languages.English.preWinnerMsg}` :
+        `${languages.Japanese.preWinnerMsg}`)}</h2>
 
 
     { /* buttons */}
-    <button style={{ marginRight: 20 + "px" }} onClick={handleScoreReset} className="btn btn-danger">Reset Score</button>
-    <button onClick={handleReset} className="btn btn-danger">Reset Score & Games</button>
-    <button style={{ marginLeft: 20 + "px" }} onClick={changeLanguage} className="btn btn-danger">{language === "en" ? "日本語" : "English"}</button>
+    <button onClick={handleScoreReset} style={{ marginRight: 20 + "px" }} className="btn btn-danger">
+      {language === "en" ? languages.English.resetScore : languages.Japanese.resetScore}
+    </button>
+    <button onClick={handleReset} className="btn btn-danger">
+      {language === "en" ? languages.English.resetScoreGames : languages.Japanese.resetScoreGames}
+    </button>
+    <button onClick={language === "en" ? changeLanguageJP : changeLanguageEN} style={{ marginLeft: 20 + "px" }} className="btn btn-danger">
+      {language === "en" ? languages.Japanese.japanese : languages.English.english}
+    </button>
 
     <hr />
     {/* Games table */}
-    <GamesTable games={games} />
+    <GamesTable games={games} language={language} languages={languages} />
     <hr />
 
   </>

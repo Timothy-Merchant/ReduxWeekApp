@@ -10,7 +10,9 @@
     "resetScore": "Reset Score",
     "resetScoreGames": "Reset Score & Games",
     "preWinnerMsg": "Let's see who will win!",
-    "winnerMsg": "wins!"
+    "winnerMsg": "wins!",
+    "won": "Won",
+    "lost": "Lost"
   },
   "Japanese": {
     "japanese": "日本語",
@@ -20,9 +22,11 @@
     "didWin": "勝負あり？",
     "player1": "プレイヤー１",
     "player2": "プレイヤー２",
-    "resetScore": "スコアーをリーセット",
-    "resetScoreGames": "スコアーとゲームをリーセット",
+    "resetScore": "スコアーをリセット",
+    "resetScoreGames": "スコアーとゲームをリセット",
     "preWinnerMsg": "終わりまで頑張れ！",
-    "winnerMsg": "の勝ちだ！"
+    "winnerMsg": "の勝ちだ！",
+    "won": "勝負",
+    "lost": "失敗"
   }
 }
