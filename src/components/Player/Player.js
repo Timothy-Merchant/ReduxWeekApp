@@ -1,4 +1,4 @@
-const ScoreBoard = ({ playerID, playerScore, handleIncrement, server, winner, language, languages }) => {
+const Player = ({ playerID, playerScore, handleIncrement, server, winner, language, languages }) => {
     return (
         <>
             <div className="col-md-6 mt-4">
@@ -18,4 +18,4 @@ const ScoreBoard = ({ playerID, playerScore, handleIncrement, server, winner, la
     );
 }
 
-export default ScoreBoard
+export default Player
