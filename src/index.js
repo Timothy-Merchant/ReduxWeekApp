@@ -5,8 +5,10 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createStore, compose } from "redux";
 import persistState from "redux-localstorage";
+import languages from "./languages.json";
 
 const initial = {
+  language: "jp",
   player1: 0,
   player2: 0,
   server: 1,
@@ -67,6 +69,7 @@ const resetGame = (state, { hardReset }) => (
 const reducer = (state, action) => {
   switch (action.type) {
     case "INCREMENT": return storeResult(determineWinner(changeServer(increaseScore(state, action))));
+    case "CHANGE_LANGUAGE": return { ...state, language: action.lang };
     case "RESET": return resetGame(state, action);
     default: return state;
   }
@@ -82,6 +85,9 @@ store.subscribe(() => {
     <React.StrictMode>
       <div id="root" className="container">
         <App
+          language={state.language}
+          languages={languages}
+          changeLanguage={() => store.dispatch({ type: "CHANGE_LANGUAGE"})}          
           handleP1Increment={() => store.dispatch({ type: "INCREMENT", player: "player1" })}
           handleP2Increment={() => store.dispatch({ type: "INCREMENT", player: "player2" })}
           p1ID={1}

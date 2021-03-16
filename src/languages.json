@@ -1,0 +1,28 @@
+{
+  "English": {
+    "english": "English",
+    "title": "PongPing",
+    "player": "Player",
+    "score": "Score",
+    "didWin": "Won?",
+    "player1": "Player 1",
+    "player2": "Player 2",
+    "resetScore": "Reset Score",
+    "resetScoreGames": "Reset Score & Games",
+    "preWinnerMsg": "Let's see who will win!",
+    "winnerMsg": "wins!"
+  },
+  "Japanese": {
+    "japanese": "日本語",
+    "title": "ピンポン",
+    "player": "プレイヤー",
+    "score": "スコアー",
+    "didWin": "勝負あり？",
+    "player1": "プレイヤー１",
+    "player2": "プレイヤー２",
+    "resetScore": "スコアーをリーセット",
+    "resetScoreGames": "スコアーとゲームをリーセット",
+    "preWinnerMsg": "終わりまで頑張れ！",
+    "winnerMsg": "の勝ちだ！"
+  }
+}
