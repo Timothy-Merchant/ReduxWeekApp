@@ -9,6 +9,7 @@ const App = ({
   p1Score,
   p2Score,
   handleReset,
+  handleScoreReset,
   server,
   winner,
   games,
@@ -33,14 +34,15 @@ const App = ({
     </div>
 
     { /* winner message */}
-    <h2 className="alert alert-success">{winner !== 0 ? `Player ${winner} wins!` : `Get to 21 points to win!`}</h2>
+    <h2 className="alert alert-success">{winner !== 0 ? `Player ${winner} wins!` : `Let's see who will win!`}</h2>
 
-    { /* reset button */}
-    <button onClick={handleReset} className="btn btn-danger">Reset</button>
+    { /* reset buttons */}
+    <button style={{marginRight: 20 + "px"}} onClick={handleScoreReset} className="btn btn-danger">Reset Score</button>
+    <button onClick={handleReset} className="btn btn-danger">Reset Score & Games</button>
 
     <hr />
     {/* Games table */}
-    <GamesTable games={games}/>
+    <GamesTable games={games} />
     <hr />
 
   </>

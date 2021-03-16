@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createStore } from "redux";
+import { createStore, compose } from "redux";
+import persistState from "redux-localstorage";
 
 const initial = {
   player1: 0,
@@ -46,34 +47,36 @@ const determineWinner = (state) => {
 
 const storeResult = (state) => {
 
-  const game = {
-    player1: state.player1,
-    player2: state.player2,
-    winner: state.winner
-  };
-
   if (state.winner !== 0) {
-    return { ...state, games: [...state.games, { ...game }] }
+    return {
+      ...state, games: [...state.games, {
+        player1: state.player1,
+        player2: state.player2,
+        winner: state.winner
+      }]
+    }
   }
 
   return { ...state }
 };
 
+const resetGame = (state, { hardReset }) => (
+  hardReset ? { ...initial } : { ...initial, games: [...state.games] }
+)
+
 const reducer = (state, action) => {
   switch (action.type) {
     case "INCREMENT": return storeResult(determineWinner(changeServer(increaseScore(state, action))));
-    case "RESET": return initial;
+    case "RESET": return resetGame(state, action);
     default: return state;
   }
 };
 
-const store = createStore(reducer, initial, window.__REDUX_DEVTOOLS_EXTENSION__
-  && window.__REDUX_DEVTOOLS_EXTENSION__());
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(reducer, initial, composeEnhancers(persistState()));
 
 store.subscribe(() => {
   let state = store.getState();
-  console.log(state.player1);
-  console.log(state.player2);
 
   ReactDOM.render(
     <React.StrictMode>
@@ -87,7 +90,8 @@ store.subscribe(() => {
           p2Score={state.player2}
           server={state.server}
           winner={state.winner}
-          handleReset={() => store.dispatch({ type: "RESET" })}
+          handleScoreReset={() => store.dispatch({ type: "RESET", hardReset: false })}
+          handleReset={() => store.dispatch({ type: "RESET", hardReset: true })}
           games={state.games}
         />
       </div>
