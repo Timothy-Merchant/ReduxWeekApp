@@ -6,6 +6,7 @@ import { increment } from "../../data/actions";
 const mapStateToProps = state => {
     return {
         playerID: 1,
+        player1Name: state.player1Name,
         playerScore: state.player1,
         server: state.server,
         winner: state.winner,

@@ -1,10 +1,5 @@
 import initial from "./initial"
 
-// player1Name(pin):""
-// player2Name(pin):""
-// pointsToWin(pin):21
-// changeServer(pin):5
-
 // Helper Functions
 const totalScore = ({ player1, player2 }) => player1 + player2;
 const checkDeuce = ({ player1, player2, pointsToWin }) => player1 >= (pointsToWin - 1) && player2 >= (pointsToWin - 1);
@@ -24,9 +19,9 @@ const resetGame = (state, { resetType }) => {
 
     switch (resetType) {
         case "score":
-            return { ...initial, gameStarted: true, games: [...state.games] };
+            return { ...state, player1: 0, player2: 0, server: initial.server };
         case "games":
-            return { ...initial, gameStarted: true }
+            return { ...state, games: initial.games, player1: 0, player2: 0, server: initial.server }
         case "hard":
             return initial;
         default:
