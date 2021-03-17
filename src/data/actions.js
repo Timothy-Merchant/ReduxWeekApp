@@ -22,6 +22,10 @@ export const reset = (resetType) => {
 export const setInitialValues = (data) => {
     return {
         type: "SETUP_GAME",
-        data: data
+        data: {
+            ...data,
+            pointsToWin: +data.pointsToWin,
+            pointsToChange: +data.pointsToChange
+        }
     }
 }

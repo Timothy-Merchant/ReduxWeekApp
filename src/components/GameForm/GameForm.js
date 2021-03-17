@@ -1,12 +1,13 @@
 import { Component } from "react";
 import { Form, Button } from "react-bootstrap"
+import LanguageButton from "../LanguageButton";
 
 class GameForm extends Component {
 
     constructor(props) {
         super(props)
 
-        this.state = {            
+        this.state = {
             player1Name: this.props.player1Name,
             player2Name: this.props.player2Name,
             pointsToWin: this.props.pointsToWin,
@@ -26,7 +27,7 @@ class GameForm extends Component {
 
     handleWinPointsChange = (e) => this.setState({ pointsToWin: e.currentTarget.value })
 
-    handleServePointsChange = (e) => this.setState({ pointsToChange: +e.currentTarget.value })
+    handleServePointsChange = (e) => this.setState({ pointsToChange: e.currentTarget.value })
 
     handleFormSubmit = (e) => {
         e.preventDefault();
@@ -36,7 +37,7 @@ class GameForm extends Component {
     render() {
 
         const { player1Name, player2Name, pointsToWin, pointsToChange } = this.state;
-        const { changeLanguageEN, changeLanguageJP, language, languages } = this.props;
+        const { languages } = this.props;
 
         return (
 
@@ -66,9 +67,7 @@ class GameForm extends Component {
                 <Button style={{ marginRight: 20 + "px" }} variant="primary" type="submit">
                     Submit
                 </Button>
-                <Button onClick={language === "en" ? changeLanguageJP : changeLanguageEN} className="btn btn-danger">
-                    {language === "en" ? "日本語" : "English"}
-                </Button>
+                <LanguageButton />
             </Form>
 
 

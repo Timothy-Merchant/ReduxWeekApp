@@ -1,9 +1,11 @@
 const initial = {
     gameStarted: false,
-    player1Name: "",
-    player2Name: "",
-    pointsToWin: 21,
-    changeServer: 5,
+    formData: {
+        player1Name: "",
+        player2Name: "",
+        pointsToWin: 21,
+        pointsToChange: 5,
+    },
     language: "en",
     player1: 0,
     player2: 0,

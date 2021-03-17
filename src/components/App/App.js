@@ -5,6 +5,7 @@ import Winner from "../Winner";
 import Buttons from "../Buttons";
 import GamesTable from "../GamesTable";
 import GameForm from "../GameForm";
+import LanguageButton from "../LanguageButton";
 
 const App = ({ startGame }) => (
 
@@ -26,6 +27,7 @@ const App = ({ startGame }) => (
 
                 { /* buttons */}
                 <Buttons />
+                <LanguageButton />
 
                 <hr />
                 {/* Games table */}
