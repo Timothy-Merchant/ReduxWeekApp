@@ -1,4 +1,3 @@
-
 const Buttons = ({ languages, language, handleScoreReset, handleReset, changeLanguageEN, changeLanguageJP }) => {
     return (
         <>

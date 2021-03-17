@@ -4,16 +4,15 @@ import Header from "./Header";
 import Winner from "./Winner";
 import Buttons from "./Buttons";
 import GamesTable from "./GamesTable";
+import GameForm from "./GameForm";
 
-const App = ({
-    changeLanguageJP,
-    changeLanguageEN,
-    handleP1Increment,
-    handleP2Increment,
-    handleReset,
-    handleScoreReset,
-}) => (
+const App = () => (
+
     <>
+        <div className="container">
+            <Header />
+            <GameForm />
+        </div>
         <div className="container">
 
             {/* header */}
@@ -21,15 +20,15 @@ const App = ({
 
             {/* scores */}
             <div className="row mb-4">
-                <Player1 handleIncrement={handleP1Increment} />
-                <Player2 handleIncrement={handleP2Increment} />
+                <Player1 />
+                <Player2 />
             </div>
 
             { /* winner message */}
             <Winner />
 
             { /* buttons */}
-            <Buttons handleScoreReset={handleScoreReset} handleReset={handleReset} changeLanguageEN={changeLanguageEN} changeLanguageJP={changeLanguageJP} />
+            <Buttons />
 
             <hr />
             {/* Games table */}
@@ -38,6 +37,7 @@ const App = ({
 
         </div>
     </>
+
 );
 
 export default App;
