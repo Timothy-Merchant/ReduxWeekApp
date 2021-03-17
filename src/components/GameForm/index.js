@@ -5,6 +5,10 @@ import { changeLanguage, setInitialValues } from "../../data/actions"
 
 const mapStateToProps = state => {
     return {
+        player1Name: state.player1Name,
+        player2Name: state.player2Name,
+        pointsToWin: state.pointsToWin,
+        pointsToChange: state.changeServer,
         language: state.language,
         languages: state.language === "en" ? languages.en : languages.jp,
     };

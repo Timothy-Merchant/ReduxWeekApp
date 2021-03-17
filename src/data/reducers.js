@@ -19,11 +19,29 @@ const resetGame = (state, { resetType }) => {
 
     switch (resetType) {
         case "score":
-            return { ...state, player1: 0, player2: 0, server: initial.server };
+            return {
+                ...state,
+                player1: 0,
+                player2: 0,
+                server: initial.server
+            };
         case "games":
-            return { ...state, games: initial.games, player1: 0, player2: 0, server: initial.server }
+            return {
+                ...state,
+                games: initial.games,
+                player1: 0,
+                player2: 0,
+                server: initial.server
+            }
         case "hard":
-            return initial;
+            return {
+                ...initial,
+                language: state.language,
+                player1Name: state.player1Name,
+                player2Name: state.player2Name,
+                pointsToWin: state.pointsToWin,
+                changeServer: state.changeServer,
+            }
         default:
             return initial;
     }
@@ -34,6 +52,7 @@ const setInitialValues = (state, { data }) => {
     return {
         ...initial,
         gameStarted: true,
+        language: state.language,
         player1Name: data.player1Name,
         player2Name: data.player2Name,
         pointsToWin: +data.pointsToWin,

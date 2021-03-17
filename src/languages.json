@@ -13,7 +13,14 @@
     "preWinnerMsg": "Let's see who will win!",
     "winnerMsg": "wins!",
     "won": "Won",
-    "lost": "Lost"
+    "lost": "Lost",
+    "pointsToWin": "Points to win",
+    "changeServerEvery": "Change server every...",
+    "points": "points",
+    "point": "point",
+    "enterPlayerName": "Enter player name...",
+    "enterWinPoints": "Enter points required to win...",
+    "pointsToChange": "Enter points until change serve..."
   },
   "jp": {
     "japanese": "日本語",
@@ -29,6 +36,13 @@
     "preWinnerMsg": "終わりまで頑張れ！",
     "winnerMsg": "の勝ちだ！",
     "won": "勝負",
-    "lost": "失敗"
+    "lost": "失敗",
+    "pointsToWin": "ポイント限界",
+    "changeServerEvery": "サーバーを変えるポイント差",
+    "points": "ポイント",
+    "point": "ポイント",
+    "enterPlayerName": "プレイヤー名前を入力してください",
+    "enterWinPoints": "ポイント限界を入力してください",
+    "pointsToChange": "サーバーを帰るまでのポイントを入力してください"
   }
 }

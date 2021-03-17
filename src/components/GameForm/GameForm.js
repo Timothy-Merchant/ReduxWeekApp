@@ -6,11 +6,11 @@ class GameForm extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            player1Name: "",
-            player2Name: "",
-            pointsToWin: 21,
-            pointsToChange: 5,
+        this.state = {            
+            player1Name: this.props.player1Name,
+            player2Name: this.props.player2Name,
+            pointsToWin: this.props.pointsToWin,
+            pointsToChange: this.props.pointsToChange,
         }
 
         this.handleP1NameChange = this.handleP1NameChange.bind(this);
@@ -36,34 +36,38 @@ class GameForm extends Component {
     render() {
 
         const { player1Name, player2Name, pointsToWin, pointsToChange } = this.state;
+        const { changeLanguageEN, changeLanguageJP, language, languages } = this.props;
 
         return (
 
             <Form onSubmit={this.handleFormSubmit}>
                 <Form.Group controlId="gameForm.NameInput1">
-                    <Form.Label>Player 1 name</Form.Label>
-                    <Form.Control type="text" value={player1Name} onChange={this.handleP1NameChange} placeholder="Enter player 1 name" />
+                    <Form.Label>{languages.player1}</Form.Label>
+                    <Form.Control type="text" value={player1Name} onChange={this.handleP1NameChange} placeholder={languages.enterPlayerName} />
                 </Form.Group>
                 <Form.Group controlId="gameForm.NameInput1">
-                    <Form.Label>Player 2 name</Form.Label>
-                    <Form.Control type="text" value={player2Name} onChange={this.handleP2NameChange} placeholder="Enter player 2 name" />
+                    <Form.Label>{languages.player2}</Form.Label>
+                    <Form.Control type="text" value={player2Name} onChange={this.handleP2NameChange} placeholder={languages.enterPlayerName} />
                 </Form.Group>
                 <Form.Group controlId="gameForm.NameInput1">
-                    <Form.Label>Points to win...</Form.Label>
-                    <Form.Control type="number" value={pointsToWin} onChange={this.handleWinPointsChange} placeholder="Enter points needed to win" />
+                    <Form.Label>{languages.pointsToWin}</Form.Label>
+                    <Form.Control type="number" value={pointsToWin} onChange={this.handleWinPointsChange} placeholder={languages.enterWinPoints} />
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>Change server every...</Form.Label>
+                    <Form.Label>{languages.changeServerEvery}</Form.Label>
                     <Form.Control onChange={this.handleServePointsChange} value={pointsToChange} as="select">
-                        <option value={5}>5 points</option>
-                        <option value={4}>4 points</option>
-                        <option value={3}>3 points</option>
-                        <option value={2}>2 points</option>
-                        <option value={1}>point</option>
+                        <option value={5}>5 {languages.points}</option>
+                        <option value={4}>4 {languages.points}</option>
+                        <option value={3}>3 {languages.points}</option>
+                        <option value={2}>2 {languages.points}</option>
+                        <option value={1}>1 {languages.point}</option>
                     </Form.Control>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button style={{ marginRight: 20 + "px" }} variant="primary" type="submit">
                     Submit
+                </Button>
+                <Button onClick={language === "en" ? changeLanguageJP : changeLanguageEN} className="btn btn-danger">
+                    {language === "en" ? "日本語" : "English"}
                 </Button>
             </Form>
 
