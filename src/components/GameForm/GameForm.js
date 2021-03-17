@@ -3,7 +3,6 @@ import { Form, Button } from "react-bootstrap"
 
 class GameForm extends Component {
 
-
     constructor(props) {
         super(props)
 
@@ -21,29 +20,13 @@ class GameForm extends Component {
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
-    handleP1NameChange = (e) => {
-        this.setState({
-            player1Name: e.currentTarget.value
-        })
-    }
+    handleP1NameChange = (e) => this.setState({ player1Name: e.currentTarget.value })
 
-    handleP2NameChange = (e) => {
-        this.setState({
-            player2Name: e.currentTarget.value
-        })
-    }
+    handleP2NameChange = (e) => this.setState({ player2Name: e.currentTarget.value })
 
-    handleWinPointsChange = (e) => {
-        this.setState({
-            pointsToWin: e.currentTarget.value
-        })
-    }
+    handleWinPointsChange = (e) => this.setState({ pointsToWin: e.currentTarget.value })
 
-    handleServePointsChange = (e) => {
-        this.setState({
-            pointsToChange: +e.currentTarget.value
-        })
-    }
+    handleServePointsChange = (e) => this.setState({ pointsToChange: +e.currentTarget.value })
 
     handleFormSubmit = (e) => {
         e.preventDefault();

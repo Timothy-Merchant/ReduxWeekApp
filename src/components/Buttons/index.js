@@ -12,8 +12,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleScoreReset: () => dispatch(reset(false)),
-        handleReset: () => dispatch(reset(true)),
+        handleScoreReset: () => dispatch(reset("score")),
+        handleGamesReset: () => dispatch(reset("games")),
+        handleReset: () => dispatch(reset("hard")),
         changeLanguageEN: () => dispatch(changeLanguage("en")),
         changeLanguageJP: () => dispatch(changeLanguage("jp")),
     }

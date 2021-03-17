@@ -12,10 +12,10 @@ export const changeLanguage = (language) => {
     }
 }
 
-export const reset = (hardReset) => {
+export const reset = (resetType) => {
     return {
         type: "RESET",
-        hardReset: hardReset
+        resetType: resetType
     }
 }
 

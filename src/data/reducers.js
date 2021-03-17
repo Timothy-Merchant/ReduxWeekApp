@@ -1,11 +1,16 @@
 import initial from "./initial"
 
+// player1Name(pin):""
+// player2Name(pin):""
+// pointsToWin(pin):21
+// changeServer(pin):5
+
 // Helper Functions
 const totalScore = ({ player1, player2 }) => player1 + player2;
-const checkDeuce = ({ player1, player2 }) => player1 >= 20 && player2 >= 20;
-const checkWinner = ({ player1, player2 }) => player1 > 20 || player2 > 20 ? player1 > player2 ? 1 : 2 : 0;
+const checkDeuce = ({ player1, player2, pointsToWin }) => player1 >= (pointsToWin - 1) && player2 >= (pointsToWin - 1);
+const checkWinner = ({ player1, player2, pointsToWin }) => player1 > (pointsToWin - 1) || player2 > (pointsToWin - 1) ? player1 > player2 ? 1 : 2 : 0;
 const checkDeuceWinner = ({ player1, player2 }) => Math.abs(player1 - player2) >= 2 ? (player1 > player2 ? 1 : 2) : 0;
-const switchServer = (state) => totalScore(state) % 5 === 0 ? state.server === 1 ? 2 : 1 : state.server;
+const switchServer = (state) => totalScore(state) % state.changeServer === 0 ? state.server === 1 ? 2 : 1 : state.server;
 const switchServerDeuce = (state) => totalScore(state) % 2 === 0 ? state.server === 1 ? 2 : 1 : state.server;
 
 // Reducer Functions
@@ -15,17 +20,32 @@ const changeServer = (state) => ({ ...state, server: checkDeuce(state) ? switchS
 
 const determineWinner = (state) => ({ ...state, winner: checkDeuce(state) ? checkDeuceWinner(state) : checkWinner(state) })
 
-const resetGame = (state, { hardReset }) => hardReset ? initial : { ...initial, games: [...state.games] };
+const resetGame = (state, { resetType }) => {
+
+    switch (resetType) {
+        case "score":
+            return { ...initial, gameStarted: true, games: [...state.games] };
+        case "games":
+            return { ...initial, gameStarted: true }
+        case "hard":
+            return initial;
+        default:
+            return initial;
+    }
+}
+
 
 const setInitialValues = (state, { data }) => {
     return {
         ...initial,
+        gameStarted: true,
         player1Name: data.player1Name,
         player2Name: data.player2Name,
         pointsToWin: +data.pointsToWin,
         changeServer: data.pointsToChange,
     }
 };
+
 
 const storeResult = (state) => {
 
@@ -39,7 +59,6 @@ const storeResult = (state) => {
             }]
         }
     }
-
     return state;
 };
 
