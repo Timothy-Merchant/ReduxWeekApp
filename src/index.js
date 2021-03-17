@@ -9,14 +9,7 @@ import store from "./data/store";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App
-        changeLanguageEN={() => store.dispatch({ type: "CHANGE_LANGUAGE", language: "en" })}
-        changeLanguageJP={() => store.dispatch({ type: "CHANGE_LANGUAGE", language: "jp" })}
-        handleP1Increment={() => store.dispatch({ type: "INCREMENT", player: "player1" })}
-        handleP2Increment={() => store.dispatch({ type: "INCREMENT", player: "player2" })}
-        handleScoreReset={() => store.dispatch({ type: "RESET", hardReset: false })}
-        handleReset={() => store.dispatch({ type: "RESET", hardReset: true })}
-      />
+      <App/>
     </Provider>
   </React.StrictMode>, document.getElementById("root")
 );
