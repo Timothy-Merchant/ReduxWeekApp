@@ -1,4 +1,8 @@
 const initial = {
+    player1Name: "",
+    player2Name: "",
+    pointsToWin: 21,
+    changeServer: 5,
     language: "en",
     player1: 0,
     player2: 0,

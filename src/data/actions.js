@@ -18,3 +18,10 @@ export const reset = (hardReset) => {
         hardReset: hardReset
     }
 }
+
+export const setInitialValues = (data) => {
+    return {
+        type: "SETUP_GAME",
+        data: data
+    }
+}

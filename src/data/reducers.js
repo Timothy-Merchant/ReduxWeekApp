@@ -17,6 +17,16 @@ const determineWinner = (state) => ({ ...state, winner: checkDeuce(state) ? chec
 
 const resetGame = (state, { hardReset }) => hardReset ? initial : { ...initial, games: [...state.games] };
 
+const setInitialValues = (state, { data }) => {
+    return {
+        ...initial,
+        player1Name: data.player1Name,
+        player2Name: data.player2Name,
+        pointsToWin: +data.pointsToWin,
+        changeServer: data.pointsToChange,
+    }
+};
+
 const storeResult = (state) => {
 
     if (state.winner !== 0) {
@@ -35,6 +45,7 @@ const storeResult = (state) => {
 
 const reducer = (state, action) => {
     switch (action.type) {
+        case "SETUP_GAME": return setInitialValues(state, action);
         case "INCREMENT": return storeResult(determineWinner(changeServer(increaseScore(state, action))));
         case "CHANGE_LANGUAGE": return { ...state, language: action.language };
         case "RESET": return resetGame(state, action);

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import GameForm from "./GameForm";
 import languages from "../../languages.json"
-import { reset, changeLanguage } from "../../data/actions"
+import { changeLanguage, setInitialValues } from "../../data/actions"
 
 const mapStateToProps = state => {
     return {
@@ -12,8 +12,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        handleScoreReset: () => dispatch(reset(false)),
-        handleReset: () => dispatch(reset(true)),
+        submitForm: (data) => dispatch(setInitialValues(data)),
         changeLanguageEN: () => dispatch(changeLanguage("en")),
         changeLanguageJP: () => dispatch(changeLanguage("jp")),
     }
