@@ -28,7 +28,6 @@ const App = ({
             { /* winner message */}
             <Winner />
 
-
             { /* buttons */}
             <Buttons handleScoreReset={handleScoreReset} handleReset={handleReset} changeLanguageEN={changeLanguageEN} changeLanguageJP={changeLanguageJP} />
 
