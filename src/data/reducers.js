@@ -32,11 +32,14 @@ const reset = (state, { resetType }) => ({
 //     }
 // };
 
-const setGameID = (state, action) => {
+const setGameData = (state, action) => {
     return {
         ...initial,
         gameStarted: true,
-        gameID: action.gameID
+        gameID: action.gameID,
+        player1Name: action.player1Name,
+        player2Name: action.player2Name,
+        server: action.server
     }
 }
 
@@ -46,8 +49,8 @@ const storeResult = (state) => {
         return {
             ...state,
             games: [...state.games, {
-                player1: state.player1,
-                player2: state.player2,
+                player_1: state.player1,
+                player_2: state.player2,
                 winner: state.winner
             }]
         }
@@ -63,7 +66,7 @@ const loaded = (state, action) => ({
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case "SET_GAME_ID": return setGameID(state, action);
+        case "SET_GAME_DATA": return setGameData(state, action);
         case "INCREMENT": return storeResult(determineWinner(changeServer(increaseScore(state, action))));
         case "CHANGE_LANGUAGE": return { ...state, language: action.language };
         case "RESET": return reset(state, action);

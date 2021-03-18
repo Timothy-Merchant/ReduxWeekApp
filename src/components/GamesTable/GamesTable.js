@@ -1,4 +1,4 @@
-const GamesTable = ({ getGames, games, language, languages }) => {
+const GamesTable = ({ getGames, deleteGame, games, language, languages }) => {
     return (
         <>
             <table className="table table-dark">
@@ -13,14 +13,17 @@ const GamesTable = ({ getGames, games, language, languages }) => {
                     <tbody key={index}>
                         <tr>
                             <th scope="row">{languages.player1}</th>
-                            <td>{game.player1}</td>
-                            <td>{game.winner === 1 ? languages.won : languages.lost}</td>
+                            <td>{game.player_1.score}</td>
+                            <td>{game.player_1.winner === 1 ? languages.won : languages.lost}</td>
+                            <td><button onClick={deleteGame(game.id)}>x</button></td>
                         </tr>
                         <tr>
                             <th scope="row">{languages.player2}</th>
-                            <td>{game.player2}</td>
-                            <td>{game.winner === 2 ? languages.won : languages.lost}</td>
+                            <td>{game.player_2.score}</td>
+                            <td>{game.player_2.winner ? languages.won : languages.lost}</td>
                         </tr>
+
+
                     </tbody>
                 ))}
             </table>

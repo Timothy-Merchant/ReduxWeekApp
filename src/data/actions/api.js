@@ -1,5 +1,5 @@
 import axios from "../../axios";
-import { loaded, setGameID, increment } from "./state"
+import { loaded, setGameData, increment } from "./state"
 
 export const getGames = () => {
     return (dispatch) => {
@@ -17,16 +17,13 @@ export const postGame = (data) => {
             winning_score: data.pointsToWin,
             change_serve: data.pointsToChange,
         }).then(({ data }) => {
-            dispatch(setGameID(data.data));
+            dispatch(setGameData(data.data));
         })
     }
 }
 
-// accept getState as the second argument
-// it's always passed in, but you don't always need it
 export const patchScore = player => (dispatch, getState) => {
-    // use getState function to get the state object
-    // then read the currentGameID property
+
     const id = getState().gameID;
 
     axios.patch(`/ping-pong/games/${id}/score`, {
@@ -35,3 +32,11 @@ export const patchScore = player => (dispatch, getState) => {
         dispatch(increment(player));
     });
 };
+
+export const deleteGame = ID => (dispatch) => {
+    return (dispatch) => {
+        axios.delete(`/ping-pong/games/${ID}`).then((response) => {
+            
+        })
+    }
+}

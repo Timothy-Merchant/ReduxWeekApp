@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import GamesTable from "./GamesTable";
 import languages from "../../languages.json"
+import { deleteGame } from "../../data/actions/api"
 
 const mapStateToProps = state => {
     return {
@@ -10,4 +11,10 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(GamesTable);
+const mapDispatchToProps = dispatch => {
+    return {
+        deleteGame: (gameID) => dispatch(deleteGame(gameID)),
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(GamesTable);

@@ -19,17 +19,6 @@ export const reset = (resetType) => {
     }
 }
 
-// export const setInitialValues = (data) => {
-//     return {
-//         type: "SETUP_GAME",
-//         data: {
-//             ...data,
-//             pointsToWin: +data.pointsToWin,
-//             pointsToChange: +data.pointsToChange
-//         }
-//     }
-// }
-
 export const loaded = (data) => {
     return {
         type: "LOADED",
@@ -37,9 +26,12 @@ export const loaded = (data) => {
     };
 };
 
-export const setGameID = (data) => {
+export const setGameData = (data) => {
     return {
-        type: "SET_GAME_ID",
-        gameID: data.id
+        type: "SET_GAME_DATA",
+        gameID: data.id,
+        player1Name: data.player_1.name,
+        player2Name: data.player_2.name,
+        server: data.player_1.serving ? 1 : 2
     }
 }
