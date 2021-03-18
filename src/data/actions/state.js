@@ -1,7 +1,7 @@
 export const increment = (player) => {
     return {
         type: "INCREMENT",
-        player: player
+        player: "player" + player
     }
 }
 
@@ -19,19 +19,26 @@ export const reset = (resetType) => {
     }
 }
 
-export const setInitialValues = (data) => {
-    return {
-        type: "SETUP_GAME",
-        data: {
-            ...data,
-            pointsToWin: +data.pointsToWin,
-            pointsToChange: +data.pointsToChange
-        }
-    }
-}
+// export const setInitialValues = (data) => {
+//     return {
+//         type: "SETUP_GAME",
+//         data: {
+//             ...data,
+//             pointsToWin: +data.pointsToWin,
+//             pointsToChange: +data.pointsToChange
+//         }
+//     }
+// }
 
 export const loaded = (data) => {
     return {
         type: "LOADED",
     };
 };
+
+export const setGameID = (data) => {
+    return {
+        type: "SET_GAME_ID",
+        gameID: data.id
+    }
+}

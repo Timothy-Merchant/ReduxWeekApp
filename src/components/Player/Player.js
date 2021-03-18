@@ -1,4 +1,4 @@
-const Player = ({ playerID, playerScore, player1Name, player2Name, handleIncrement, server, winner, language, languages }) => {
+const Player = ({ playerID, playerScore, player1Name, player2Name, getPlayerData, handleIncrement, server, winner, language, languages }) => {
 
     const playerName = playerID === 1 ? player1Name : player2Name;
 

@@ -1,6 +1,7 @@
 const initial = {
-    loaded: false,
+    loaded: false,    
     gameStarted: false,
+    gameID: 0,
     formData: {
         player1Name: "",
         player2Name: "",

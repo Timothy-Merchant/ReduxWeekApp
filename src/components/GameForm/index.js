@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import GameForm from "./GameForm";
 import languages from "../../languages.json"
-import { changeLanguage, setInitialValues } from "../../data/actions/state"
+import { changeLanguage} from "../../data/actions/state"
+import { postGame } from "../../data/actions/api"
 
 const mapStateToProps = state => {
     return {
@@ -16,7 +17,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        submitForm: (data) => dispatch(setInitialValues(data)),
+
+        submitForm: (data) => dispatch(postGame(data)),
         changeLanguageEN: () => dispatch(changeLanguage("en")),
         changeLanguageJP: () => dispatch(changeLanguage("jp")),
     }

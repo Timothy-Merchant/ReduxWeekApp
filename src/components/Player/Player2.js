@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Player from "./Player";
 import languages from "../../languages.json"
-import { increment } from "../../data/actions/state";
+import { patchScore } from "../../data/actions/api";
 
 const mapStateToProps = state => {
     return {
@@ -17,7 +17,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        handleIncrement: () => dispatch(increment("player2"))
+        handleIncrement: () => dispatch(patchScore(2)),
     };
 }
 

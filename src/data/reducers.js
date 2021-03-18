@@ -23,14 +23,22 @@ const reset = (state, { resetType }) => ({
     games: resetType === "score" ? [...state.games] : initial.games
 })
 
-const setInitialValues = (state, { data }) => {
+// const setInitialValues = (state, action) => {
+//     return {
+//         ...initial,
+//         gameStarted: true,
+//         language: state.language,
+//         formData: { ...action.formData }
+//     }
+// };
+
+const setGameID = (state, action) => {
     return {
         ...initial,
         gameStarted: true,
-        language: state.language,
-        formData: { ...data }
+        gameID: action.gameID
     }
-};
+}
 
 const storeResult = (state) => {
 
@@ -48,14 +56,13 @@ const storeResult = (state) => {
 };
 
 const loaded = (state, action) => ({
-    ...state,    
+    ...state,
     loaded: true,
 });
 
-
 const reducer = (state, action) => {
     switch (action.type) {
-        case "SETUP_GAME": return setInitialValues(state, action);
+        case "SET_GAME_ID": return setGameID(state, action);
         case "INCREMENT": return storeResult(determineWinner(changeServer(increaseScore(state, action))));
         case "CHANGE_LANGUAGE": return { ...state, language: action.language };
         case "RESET": return reset(state, action);
