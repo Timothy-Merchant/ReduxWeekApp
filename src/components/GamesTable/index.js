@@ -11,7 +11,7 @@ const mapStateToProps = state => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
         deleteGame: (gameID) => dispatch(deleteGame(gameID)),
     }

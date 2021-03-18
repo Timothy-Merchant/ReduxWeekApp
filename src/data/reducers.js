@@ -17,6 +17,7 @@ const determineWinner = (state) => ({ ...state, winner: checkDeuce(state) ? chec
 
 const reset = (state, { resetType }) => ({
     ...initial,
+    loaded: false,
     language: state.language,
     formData: { ...state.formData },
     gameStarted: resetType === "score" || resetType === "games",
@@ -64,6 +65,11 @@ const loaded = (state, action) => ({
     games: [...action.games]
 });
 
+const refreshGames = (state, action) => ({
+    ...state,
+    games: state.games.filter((game, index) => game.id !== action.gameToRemove)
+})
+
 const reducer = (state, action) => {
     switch (action.type) {
         case "SET_GAME_DATA": return setGameData(state, action);
@@ -71,6 +77,7 @@ const reducer = (state, action) => {
         case "CHANGE_LANGUAGE": return { ...state, language: action.language };
         case "RESET": return reset(state, action);
         case "LOADED": return loaded(state, action);
+        case "REMOVE_GAME": return refreshGames(state, action);
         default: return state;
     }
 };

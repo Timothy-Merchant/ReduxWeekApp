@@ -15,7 +15,7 @@ const GamesTable = ({ getGames, deleteGame, games, language, languages }) => {
                             <th scope="row">{languages.player1}</th>
                             <td>{game.player_1.score}</td>
                             <td>{game.player_1.winner === 1 ? languages.won : languages.lost}</td>
-                            <td><button onClick={deleteGame(game.id)}>x</button></td>
+                            <td><button onClick={() => deleteGame(game.id)}>x</button></td>
                         </tr>
                         <tr>
                             <th scope="row">{languages.player2}</th>

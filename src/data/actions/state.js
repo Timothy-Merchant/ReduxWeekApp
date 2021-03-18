@@ -35,3 +35,10 @@ export const setGameData = (data) => {
         server: data.player_1.serving ? 1 : 2
     }
 }
+
+export const removeGame = (ID) => {
+    return {
+        type: "REMOVE_GAME",
+        gameToRemove: ID
+    }
+}

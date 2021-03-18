@@ -8,10 +8,10 @@ class GameForm extends Component {
         super(props)
 
         this.state = {
-            player1Name: this.props.player1Name,
-            player2Name: this.props.player2Name,
-            pointsToWin: this.props.pointsToWin,
-            pointsToChange: this.props.pointsToChange,
+            player1Name: "",
+            player2Name: "",
+            pointsToWin: 5,
+            pointsToChange: 5,
         }
 
         this.handleP1NameChange = this.handleP1NameChange.bind(this);
