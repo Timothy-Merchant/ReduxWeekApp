@@ -33,6 +33,7 @@ export const reset = (resetType) => {
 export const loaded = (data) => {
     return {
         type: "LOADED",
+        games: data
     };
 };
 

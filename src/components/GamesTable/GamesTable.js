@@ -1,4 +1,4 @@
-const GamesTable = ({ games, language, languages }) => {
+const GamesTable = ({ getGames, games, language, languages }) => {
     return (
         <>
             <table className="table table-dark">

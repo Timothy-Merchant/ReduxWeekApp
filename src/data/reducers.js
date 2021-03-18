@@ -58,6 +58,7 @@ const storeResult = (state) => {
 const loaded = (state, action) => ({
     ...state,
     loaded: true,
+    games: [...action.games]
 });
 
 const reducer = (state, action) => {

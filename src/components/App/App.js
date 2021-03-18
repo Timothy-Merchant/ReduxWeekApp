@@ -6,36 +6,39 @@ import Buttons from "../Buttons";
 import GamesTable from "../GamesTable";
 import GameForm from "../GameForm";
 import LanguageButton from "../LanguageButton";
+import Loading from "../Loading"
 
 const App = ({ startGame }) => (
 
 
     startGame ?
         <>
-            <div className="container">
+            <Loading>
+                <div className="container">
 
-                {/* header */}
-                <Header />
+                    {/* header */}
+                    <Header />
 
-                {/* scores */}
-                <div className="row mb-4">
-                    <Player1 />
-                    <Player2 />
+                    {/* scores */}
+                    <div className="row mb-4">
+                        <Player1 />
+                        <Player2 />
+                    </div>
+
+                    { /* winner message */}
+                    <Winner />
+
+                    { /* buttons */}
+                    <Buttons />
+                    <LanguageButton />
+
+                    <hr />
+                    {/* Games table */}
+                    <GamesTable />
+                    <hr />
+
                 </div>
-
-                { /* winner message */}
-                <Winner />
-
-                { /* buttons */}
-                <Buttons />
-                <LanguageButton />
-
-                <hr />
-                {/* Games table */}
-                <GamesTable />
-                <hr />
-
-            </div>
+            </Loading>
         </>
         :
         <>
