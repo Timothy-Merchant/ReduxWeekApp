@@ -29,3 +29,9 @@ export const setInitialValues = (data) => {
         }
     }
 }
+
+export const loaded = (data) => {
+    return {
+        type: "LOADED",
+    };
+};

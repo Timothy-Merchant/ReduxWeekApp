@@ -6,11 +6,14 @@ import Buttons from "../Buttons";
 import GamesTable from "../GamesTable";
 import GameForm from "../GameForm";
 import LanguageButton from "../LanguageButton";
+import Loading from "../Loading"
 
 const App = ({ startGame }) => (
 
+
     startGame ?
         <>
+
             <div className="container">
 
                 {/* header */}
@@ -38,10 +41,12 @@ const App = ({ startGame }) => (
         </>
         :
         <>
-            <div className="container">
-                <Header />
-                <GameForm />
-            </div>
+            <Loading>
+                <div className="container">
+                    <Header />
+                    <GameForm />
+                </div>
+            </Loading>
         </>
 
 

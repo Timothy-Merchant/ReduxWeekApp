@@ -47,12 +47,19 @@ const storeResult = (state) => {
     return state;
 };
 
+const loaded = (state, action) => ({
+    ...state,    
+    loaded: true,
+});
+
+
 const reducer = (state, action) => {
     switch (action.type) {
         case "SETUP_GAME": return setInitialValues(state, action);
         case "INCREMENT": return storeResult(determineWinner(changeServer(increaseScore(state, action))));
         case "CHANGE_LANGUAGE": return { ...state, language: action.language };
         case "RESET": return reset(state, action);
+        case "LOADED": return loaded(state, action);
         default: return state;
     }
 };

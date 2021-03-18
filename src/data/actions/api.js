@@ -1,9 +1,10 @@
 import axios from "../../axios";
+import { loaded } from "./state"
 
-export const getCounter = () => {
+export const getGames = () => {
     return (dispatch) => {
-        axios.get("/").then(({ data }) => {
-            console.log(data);
+        axios.get("/ping-pong/games").then(({ data }) => {
+            dispatch(loaded(data.data));
         });
     };
 };
