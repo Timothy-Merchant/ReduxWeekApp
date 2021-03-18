@@ -15,7 +15,7 @@ export const postGame = (data) => {
             player_1: data.player1Name,
             player_2: data.player2Name,
             winning_score: data.pointsToWin,
-            change_serve: data.pointsToChange,
+            change_serve: data.pointsToChange,            
         }).then(({ data }) => {
             dispatch(setGameData(data.data));
         })

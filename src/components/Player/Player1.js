@@ -6,7 +6,7 @@ import { patchScore } from "../../data/actions/api";
 const mapStateToProps = state => {
     return {
         playerID: 1,
-        player1Name: state.player1Name,
+        player1Name: state.formData.player1Name,
         playerScore: state.player1,
         server: state.server,
         winner: state.winner,
@@ -15,7 +15,8 @@ const mapStateToProps = state => {
     };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
+
     return {
         handleIncrement: () => dispatch(patchScore(1)),
     }

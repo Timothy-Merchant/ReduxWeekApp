@@ -12,18 +12,16 @@ const GamesTable = ({ getGames, deleteGame, games, language, languages }) => {
                 {games.map((game, index) => (
                     <tbody key={index}>
                         <tr>
-                            <th scope="row">{languages.player1}</th>
+                            <th scope="row">{game.player_1.name}</th>
                             <td>{game.player_1.score}</td>
                             <td>{game.player_1.winner === 1 ? languages.won : languages.lost}</td>
                             <td><button onClick={() => deleteGame(game.id)}>x</button></td>
                         </tr>
                         <tr>
-                            <th scope="row">{languages.player2}</th>
+                            <th scope="row">{game.player_2.name}</th>
                             <td>{game.player_2.score}</td>
                             <td>{game.player_2.winner ? languages.won : languages.lost}</td>
                         </tr>
-
-
                     </tbody>
                 ))}
             </table>

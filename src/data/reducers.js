@@ -38,9 +38,13 @@ const setGameData = (state, action) => {
         ...initial,
         gameStarted: true,
         gameID: action.gameID,
-        player1Name: action.player1Name,
-        player2Name: action.player2Name,
-        server: action.server
+        server: action.server,
+        formData: {
+            player1Name: action.player1Name,
+            player2Name: action.player2Name,
+            pointsToWin: action.pointsToWin,
+            pointsToChange: action.pointsToChange
+        }
     }
 }
 

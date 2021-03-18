@@ -6,6 +6,10 @@ import { postGame } from "../../data/actions/api"
 
 const mapStateToProps = state => {
     return {
+        player1Name: state.formData.player1Name,
+        player2Name: state.formData.player2Name,
+        pointsToWin: state.formData.pointsToWin,
+        pointsToChange: state.formData.pointsToChange,
         language: state.language,
         languages: state.language === "en" ? languages.en : languages.jp,
     };
