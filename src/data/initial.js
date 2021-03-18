@@ -1,4 +1,5 @@
 const initial = {
+    loaded: false,
     gameStarted: false,
     formData: {
         player1Name: "",

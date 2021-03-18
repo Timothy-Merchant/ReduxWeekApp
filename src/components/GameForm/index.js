@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import GameForm from "./GameForm";
 import languages from "../../languages.json"
-import { changeLanguage, setInitialValues } from "../../data/actions"
+import { changeLanguage, setInitialValues } from "../../data/actions/state"
 
 const mapStateToProps = state => {
     return {

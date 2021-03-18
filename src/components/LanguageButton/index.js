@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import LanguageButton from "./LanguageButton";
 import languages from "../../languages.json"
-import { changeLanguage } from "../../data/actions"
+import { changeLanguage } from "../../data/actions/state"
 
 const mapStateToProps = state => {
     return {

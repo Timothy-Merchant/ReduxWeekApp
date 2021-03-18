@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Player from "./Player";
 import languages from "../../languages.json"
-import { increment } from "../../data/actions";
+import { increment } from "../../data/actions/state";
 
 const mapStateToProps = state => {
     return {
