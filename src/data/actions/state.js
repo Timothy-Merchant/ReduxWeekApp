@@ -26,6 +26,14 @@ export const loaded = (data) => {
     };
 };
 
+export const updateList = (data) => {
+    console.log(data);
+    return {
+        type: "UPDATE_LIST",
+        game: data
+    };
+};
+
 export const setGameData = (data) => {
     return {
         type: "SET_GAME_DATA",
@@ -34,7 +42,7 @@ export const setGameData = (data) => {
         player2Name: data.player_2.name,
         server: data.player_1.serving ? 1 : 2,
         pointsToWin: data.winning_score,
-        pointsToChange: data.change_serve,        
+        pointsToChange: data.change_serve,
     }
 }
 

@@ -45,6 +45,11 @@ const loaded = (state, action) => ({
     games: [...action.games]
 });
 
+const updateList = (state, action) => ({
+    ...state,
+    games: [...state.games, action.game]
+});
+
 const refreshGames = (state, action) => ({
     ...state,
     games: state.games.filter((game, index) => game.id !== action.gameToRemove)
@@ -57,6 +62,7 @@ const reducer = (state, action) => {
         case "CHANGE_LANGUAGE": return { ...state, language: action.language };
         case "RESET": return reset(state, action);
         case "LOADED": return loaded(state, action);
+        case "UPDATE_LIST": return updateList(state, action);
         case "REMOVE_GAME": return refreshGames(state, action);
         default: return state;
     }

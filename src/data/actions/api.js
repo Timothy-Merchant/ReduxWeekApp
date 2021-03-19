@@ -1,5 +1,5 @@
 import axios from "../../axios";
-import { loaded, setGameData, increment, removeGame } from "./state"
+import { loaded, setGameData, increment, removeGame, updateList } from "./state"
 
 export const getGames = () => {
     return (dispatch) => {
@@ -27,9 +27,12 @@ export const patchScore = player => (dispatch, getState) => {
     const id = getState().gameID;
 
     axios.patch(`/ping-pong/games/${id}/score`, {
-        player: player,        
+        player: player,
     }).then(({ data }) => {
         dispatch(increment(player));
+        if (data.data.complete) {            
+            dispatch(updateList(data.data))
+        }
     });
 };
 
