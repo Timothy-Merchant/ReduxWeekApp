@@ -17,7 +17,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        handleIncrement: () => dispatch(patchScore(2)),
+        handleIncrement: () => dispatch(patchScore(2)),        
     };
 }
 

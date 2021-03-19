@@ -34,7 +34,7 @@ export const setGameData = (data) => {
         player2Name: data.player_2.name,
         server: data.player_1.serving ? 1 : 2,
         pointsToWin: data.winning_score,
-        pointsToChange: data.change_serve,
+        pointsToChange: data.change_serve,        
     }
 }
 

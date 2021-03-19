@@ -24,15 +24,6 @@ const reset = (state, { resetType }) => ({
     games: resetType === "score" ? [...state.games] : initial.games
 })
 
-// const setInitialValues = (state, action) => {
-//     return {
-//         ...initial,
-//         gameStarted: true,
-//         language: state.language,
-//         formData: { ...action.formData }
-//     }
-// };
-
 const setGameData = (state, action) => {
     return {
         ...initial,
@@ -48,21 +39,6 @@ const setGameData = (state, action) => {
     }
 }
 
-const storeResult = (state) => {
-
-    if (state.winner !== 0) {
-        return {
-            ...state,
-            games: [...state.games, {
-                player_1: state.player1,
-                player_2: state.player2,
-                winner: state.winner
-            }]
-        }
-    }
-    return state;
-};
-
 const loaded = (state, action) => ({
     ...state,
     loaded: true,
@@ -77,7 +53,7 @@ const refreshGames = (state, action) => ({
 const reducer = (state, action) => {
     switch (action.type) {
         case "SET_GAME_DATA": return setGameData(state, action);
-        case "INCREMENT": return storeResult(determineWinner(changeServer(increaseScore(state, action))));
+        case "INCREMENT": return determineWinner(changeServer(increaseScore(state, action)));
         case "CHANGE_LANGUAGE": return { ...state, language: action.language };
         case "RESET": return reset(state, action);
         case "LOADED": return loaded(state, action);
